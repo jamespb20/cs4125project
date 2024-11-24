@@ -51,7 +51,7 @@ class HistGBStrategy(classifierStrategy):
         # If it's 1D (single sample), reshape to 2D
         elif text.ndim == 1:
             text = text.reshape(1, -1)
-        return self.classifier.predict([text]), self.classifier.predict_proba([text])
+        return self.classifier.predict(text), self.classifier.predict_proba(text)
 
 class SGDStrategy(classifierStrategy):
     def __init__(self):
@@ -65,7 +65,7 @@ class SGDStrategy(classifierStrategy):
 
     def predict(self, text):
         text = text.reshape(1, -1)
-        return self.classifier.predict([text]), self.classifier.predict_proba([text])
+        return self.classifier.predict(text), self.classifier.predict_proba(text)
 
 class AdaBoostingStrategy(classifierStrategy):
     def __init__(self):
@@ -79,7 +79,7 @@ class AdaBoostingStrategy(classifierStrategy):
 
     def predict(self, text):
         text = text.reshape(1, -1)
-        return self.classifier.predict([text]), self.classifier.predict_proba([text])
+        return self.classifier.predict(text), self.classifier.predict_proba(text)
 
 class MLPStrategy(classifierStrategy):
     def __init__(self):
