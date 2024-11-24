@@ -66,6 +66,9 @@ def createFile():
     print("Translating the content...")
     df['Interaction content'] = df['Interaction content'].apply(translate)
 
+    # Apply translation to the 'Ticket Summary' column
+    df['Ticket Summary'] = df['Ticket Summary'].apply(translate)
+
     # Save the translated data to a new CSV file
     translated_file_path = 'email prototype/data/AppGallery_translated.csv'
     df.to_csv(translated_file_path, index=False)

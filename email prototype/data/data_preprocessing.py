@@ -34,22 +34,29 @@ def load_and_preprocess_data(file_path):
 #transform the text data into numerical
 
 def transform_text_data(df):
-    
-    #initialise vectorizer to convert text data into numerical 
+    # Initialize vectorizer to convert text data into numerical
     tfidfconverter = TfidfVectorizer(max_features=2000, min_df=4, max_df=0.90)
 
-    # convert the two columns into numerical 
-    x1 = tfidfconverter.fit_transform(df["Interaction content"]).toarray()
-    x2 = tfidfconverter.fit_transform(df["Ticket Summary"]).toarray()
+    # Fit the vectorizer on the combined text data
+    combined_text = df["Interaction content"].tolist() + df["Ticket Summary"].tolist()
+    tfidfconverter.fit(combined_text)
 
-    #concatenate the two results 
+    # Convert the two columns into numerical
+    x1 = tfidfconverter.transform(df["Interaction content"]).toarray()
+    x2 = tfidfconverter.transform(df["Ticket Summary"]).toarray()
+
+    # Concatenate the two results
     X = np.concatenate((x1, x2), axis=1)
 
-    #extract y
+    # Extract y
     y = df["y"].to_numpy()
 
-    #return matric X and target variable y
-    return X, y
+    # Return matrix X, target variable y, and the vectorizer
+    return X, y, tfidfconverter
+
+def transform_single_text(text, tfidfconverter):
+    # Transform a single text entry using the provided tfidfconverter
+    return tfidfconverter.transform([text]).toarray()
 
 
 #split the data into training and test sets, 80% and 20% respectively.
