@@ -32,10 +32,12 @@ def check_and_save_csv(input_file_path, output_file_path, output_urgent):
                 else:
                     #Write result
                     csv_writer.writerow(row)
+    print("CSV files saved successfully.")
+    print("Urgent emails can be found in the file: ", output_file_urgent)
+    print("Emails without spam can be found in the file: ", output_file_path)
 
 
 #All the different file paths.
 input_file_path = "email prototype/data/AppGallery_translated.csv"  
 output_file_path = "email prototype/data/AppGallery_translatedWithoutSpam.csv"  
 output_file_urgent = "email prototype/data/AppGallery_UrgentList.csv"
-check_and_save_csv(input_file_path, output_file_path, output_file_urgent)
