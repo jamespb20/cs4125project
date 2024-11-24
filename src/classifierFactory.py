@@ -7,7 +7,7 @@ class ClassifierFactory:
     def __init__(self):
         # Registry for reusing classifiers
         self.classifier_registry = {}
-        self.categories_file = 'email prototype/data/AppGallery.csv'  # Path to the CSV file
+        self.categories_file = 'data/AppGallery.csv'  # Path to the CSV file
 
     def register_classifier(self, category_name, classifier_instance):
         """Registers a classifier instance for reuse."""
